@@ -2,14 +2,13 @@ import React from 'react'
 
 export default function Video ({videoData}) {
     const { embedUrl, title, views,createdAt, upvotes, downvotes } = videoData
-    console.log(embedUrl, title, createdAt, upvotes, downvotes)
 
   return (
     <div>
         <iframe
         width="919"
         height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        src={embedUrl}
         frameBorder="0"
         allowFullScreen
         title="Thinking in React"
