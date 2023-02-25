@@ -1,21 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
+import CommentCard from './CommentCard'
 
 
 export default function Comments({comments}) {
-    console.log(comments)
+    const [showComments, setShowComments] = useState(true)
 
-    const commentsToDisplay = comments.map(comment => 
-        <div class="user-comments">
-            <h3>{comment.user}</h3>
-            <p>{comment.comment}</p>
-        </div>
-    )
+    function handleToggle() {
+        setShowComments((showComments) => !showComments)
+    }
+
+
+    const commentsToDisplay = comments.map(comment => <CommentCard key={comment.id} user={comment.user} comment={comment.comment}/>)
     
+    const displayComments = (showComments) ? (
+        <>
+            <h2>{comments.length} Comments</h2>
+            {commentsToDisplay}
+        </>
+    ) : null
+
   return (
-    <div class="comments-container">
-        <button>Hide Comments</button>
-        <h2>{comments.length} Comments</h2>
-        {commentsToDisplay}
+    <div className="comments-container">
+        <button onClick={handleToggle}>Hide Comments</button>
+        {displayComments}
+
     </div>
   )
 }
